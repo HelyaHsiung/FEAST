@@ -186,7 +186,7 @@ def hist_plotter(directory, display=True, save=False, file_out=None, interactive
     if bins is None:
         bins = np.linspace(0, max(leaks_made), n_bins+1)
     cumsum_points = 100
-    counts, bins, patches = plt.hist(leaks_made, bins, density=True, normed=0, alpha=0.75)
+    counts, bins, patches = plt.hist(leaks_made, bins, density=True, alpha=0.75)
     plt.close()
     # Calculative the cumulative fraction of leakage above a range of leak fluxes
     cumsum = np.zeros(cumsum_points)
@@ -203,7 +203,7 @@ def hist_plotter(directory, display=True, save=False, file_out=None, interactive
             continue
         fig, ax1 = plt.subplots()
         ax2 = ax1.twinx()
-        counts_temp, bins_temp, patches = ax1.hist(tech_leaks_found[tech], bins, normed=0, alpha=0.75)
+        counts_temp, bins_temp, patches = ax1.hist(tech_leaks_found[tech], bins, density=True, alpha=0.75)
         ax1.cla()
         counts_temp /= well_count
         ax1.bar(bins_temp[0:n_bins], counts_temp, width=delta, color=color_set[ind+1], label="Leaks found")
